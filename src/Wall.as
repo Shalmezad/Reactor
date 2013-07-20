@@ -9,6 +9,7 @@ package
 			this.x = x;
 			this.y = y;
 			makeGraphic(width, height, 0xffaaaaaa);
+			this.immovable = true;
 		}
 	}
 		
