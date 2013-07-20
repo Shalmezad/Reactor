@@ -9,8 +9,11 @@ package
  
 		public function Molecule() 
 		{
+			x = 50;
+			y = 50;
 			loadGraphic(M_2);
 			this.color = 0xFF00FF;
+			
 		}
 		
 		override public function update():void
