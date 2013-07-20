@@ -7,6 +7,7 @@ package
 		public function GameState() 
 		{
 			add(new FlxText(100, 100, 200, "TESTING"));
+			add(new Molecule());
 		}
 		
 	}
