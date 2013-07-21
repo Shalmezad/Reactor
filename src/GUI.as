@@ -32,8 +32,10 @@ package
 			energyText.text = "ENERGY: " + energy.toString();
 			levelText.text = "LEVEL: " + level.toString();
 			scoreText.text = "SCORE: " + score.toString();
+			if (energy <= 0) {
+				FlxG.switchState(new GameOverState());
+			}
 		}
-		
 	}
 
 }
