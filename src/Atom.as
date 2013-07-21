@@ -6,10 +6,14 @@ package
 		[Embed(source = "../assets/atom.png")] 
 		private	var G_ATOM:Class;
 		
+		private var time:int;
+		
 		public function Atom() 
 		{
 			x = Math.random() * 300 + 10;
 			y = Math.random() * 220 + 10;
+			
+			time = 0;
 			
 			this.velocity.x = (20 + Math.random() * 60);
 			this.velocity.y = (20 + Math.random() * 60);
@@ -47,6 +51,10 @@ package
 		override public function update():void
 		{
 			this.angle += 5;
+			time++;
+			if (time > 5 * 30) {
+				kill();
+			}
 		}
 		
 	}
