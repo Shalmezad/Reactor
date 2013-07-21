@@ -47,10 +47,29 @@ package
 				mPos.height = 1;
 				mPos.x = FlxG.mouse.x;
 				mPos.y = FlxG.mouse.y;
-				if (FlxG.overlap(mPos, molecules)) {
-					//TODO: Add logic here.
-					trace("Mouse clicked molecule!");
-				}
+				FlxG.overlap(mPos, molecules, mouseClicked);
+			}
+		}
+		
+		public function mouseClicked(a:FlxObject, b:FlxObject):void
+		{
+			var mole:Molecule;
+			if (a is Molecule) {
+				mole = a as Molecule;
+			}
+			else {
+				mole = b as Molecule;
+			}
+			molecules.remove(mole, true);
+			mole.kill();
+			
+			//spawn atoms for each molecule.
+			for (var c:int = 0; c < mole.atoms; c++) {
+				var atom:Atom = new Atom();
+				atom.x = mole.x;
+				atom.y = mole.y;
+				atom.flicker(1);
+				atoms.add(atom);
 			}
 		}
 		
@@ -68,29 +87,33 @@ package
 				atom = b as Atom;
 			}
 			
-			//See if we can increase the molecule size or not...
-			if(mole.atoms < Molecule.MAXATOMS){
-				var newMole:Molecule;
-				newMole = new Molecule(a.x, a.y, mole.atoms + 1, mole.color);
-				newMole.velocity.x = mole.velocity.x;
-				newMole.velocity.y = mole.velocity.y;
-				atoms.remove(atom);
-				molecules.remove(mole);
-				atom.kill();
-				mole.kill();
-				molecules.add(newMole);
+			if(!atom.flickering){
+				//See if we can increase the molecule size or not...
+				if(mole.atoms < Molecule.MAXATOMS){
+					var newMole:Molecule;
+					newMole = new Molecule(a.x, a.y, mole.atoms + 1, mole.color);
+					newMole.velocity.x = mole.velocity.x;
+					newMole.velocity.y = mole.velocity.y;
+					atoms.remove(atom);
+					molecules.remove(mole);
+					atom.kill();
+					mole.kill();
+					molecules.add(newMole);
+				}
 			}
 		}
 		public function atomAtomCollide(a:FlxObject, b:FlxObject):void
 		{
-			//remove the atoms.
-			atoms.remove(a, true);
-			atoms.remove(b, true);
-			a.kill();
-			b.kill();
-			//and make a new molecule.
-			var mole:Molecule = new Molecule(a.x, a.y, 2);
-			molecules.add(mole);
+			if(!a.flickering && !b.flickering){
+				//remove the atoms.
+				atoms.remove(a, true);
+				atoms.remove(b, true);
+				a.kill();
+				b.kill();
+				//and make a new molecule.
+				var mole:Molecule = new Molecule(a.x, a.y, 2);
+				molecules.add(mole);
+			}
 		}
 	}
 
