@@ -10,8 +10,16 @@ package
 		{
 			x = Math.random() * 300 + 10;
 			y = Math.random() * 220 + 10;
-			this.velocity.x = -100 + Math.random() * 200;
-			this.velocity.y = -100 + Math.random() * 200;
+			
+			this.velocity.x = (20 + Math.random() * 60);
+			this.velocity.y = (20 + Math.random() * 60);
+			if (Math.random() * 2 >= 1) {
+				this.velocity.x *= -1;
+			}
+			if (Math.random() * 2 >= 1) {
+				this.velocity.y *= -1;
+			}
+			
 			this.elasticity = 1;
 			loadGraphic(G_ATOM);
 			switch((int)(Math.random() * 6)) {
