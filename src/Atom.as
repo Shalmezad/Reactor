@@ -52,7 +52,12 @@ package
 		{
 			this.angle += 5;
 			time++;
-			if (time > 5 * 30) {
+			if (time > 5 * 30 && alive) {
+				kill();
+				GUI.energy += GUI.ATOM_GAIN;
+				GUI.score += GUI.ATOM_GAIN;
+			}
+			if (!this.onScreen()) {
 				kill();
 			}
 		}

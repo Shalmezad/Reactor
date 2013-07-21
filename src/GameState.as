@@ -6,20 +6,24 @@ package
 		private var molecules:FlxGroup;
 		private var atoms:FlxGroup;
 		private var walls:Walls;
-		public function GameState() 
+		private var levelNumber:int;
+		public function GameState(levelNum:int = 1) 
 		{
+			levelNumber = levelNum;
+			GUI.level = levelNum;
 			molecules = new FlxGroup();
 			atoms = new FlxGroup();
-			for (var a:int = 0; a < 5; a++){
-				molecules.add(new Molecule(Math.random() * 340 + 10, Math.random() * 220 + 10, 5));
+			for (var a:int = 0; a < levelNumber + 4; a++){
+				molecules.add(new Molecule(Math.random() * 300 + 10, Math.random() * 220 + 10, Math.random() * 4 + 2));
 			}
-			for (var b:int = 0; b < 20; b++){
+			/*for (var b:int = 0; b < 5; b++){
 				atoms.add(new Atom());
-			}
+			}*/
 			add(molecules);
 			add(atoms);
 			walls = new Walls();
 			add(walls);
+			add(new GUI());
 		}
 		
 		override public function update():void
@@ -27,6 +31,11 @@ package
 			super.update();
 			handleCollisions();
 			handleInput();
+			trace("Molecules: " + molecules.countLiving());
+			trace("Atoms: " + atoms.countLiving());
+			if (molecules.countLiving() <= 0 && atoms.countLiving() <= 0) {
+				FlxG.switchState(new GameState(levelNumber + 1));
+			}
 		}
 		
 		public function handleCollisions():void
@@ -62,6 +71,7 @@ package
 			}
 			molecules.remove(mole, true);
 			mole.kill();
+			GUI.energy -= GUI.CLICK_COST;
 			
 			//spawn atoms for each molecule.
 			for (var c:int = 0; c < mole.atoms; c++) {
@@ -89,13 +99,14 @@ package
 			
 			if(!atom.flickering){
 				//See if we can increase the molecule size or not...
-				if(mole.atoms < Molecule.MAXATOMS){
+				if (mole.atoms < Molecule.MAXATOMS) {
+					GUI.energy -= GUI.ATOM_DRAIN;
 					var newMole:Molecule;
 					newMole = new Molecule(a.x, a.y, mole.atoms + 1, mole.color);
 					newMole.velocity.x = mole.velocity.x;
 					newMole.velocity.y = mole.velocity.y;
-					atoms.remove(atom);
-					molecules.remove(mole);
+					atoms.remove(atom, true);
+					molecules.remove(mole, true);
 					atom.kill();
 					mole.kill();
 					molecules.add(newMole);
@@ -105,6 +116,7 @@ package
 		public function atomAtomCollide(a:FlxObject, b:FlxObject):void
 		{
 			if(!a.flickering && !b.flickering){
+					GUI.energy -= (GUI.ATOM_DRAIN*2);
 				//remove the atoms.
 				atoms.remove(a, true);
 				atoms.remove(b, true);

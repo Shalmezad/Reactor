@@ -81,6 +81,9 @@ package
 		override public function update():void
 		{
 			this.angle += 5;
+			if (!this.onScreen()) {
+				kill();
+			}
 		}
 		
 		
