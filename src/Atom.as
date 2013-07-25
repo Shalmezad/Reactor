@@ -7,6 +7,8 @@ package
 		private	var G_ATOM:Class;
 		
 		private var time:int;
+		private var speed:Number;
+		private var direction:Number;
 		
 		public function Atom() 
 		{
@@ -15,14 +17,12 @@ package
 			
 			time = 0;
 			
-			this.velocity.x = (20 + Math.random() * 60);
-			this.velocity.y = (20 + Math.random() * 60);
-			if (Math.random() * 2 >= 1) {
-				this.velocity.x *= -1;
-			}
-			if (Math.random() * 2 >= 1) {
-				this.velocity.y *= -1;
-			}
+			//use speed/direction to determine velocity x/y.
+			speed = Math.random() * 80 + 20;
+			direction = Math.random() * Math.PI * 2;
+			
+			this.velocity.x = (Math.cos(direction) * speed);
+			this.velocity.y = (Math.sin(direction) * speed);
 			
 			this.elasticity = 1;
 			loadGraphic(G_ATOM);
@@ -48,6 +48,7 @@ package
 			}
 			
 		}
+		
 		override public function update():void
 		{
 			this.angle += 5;
