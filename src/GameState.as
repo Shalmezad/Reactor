@@ -76,6 +76,7 @@ package
 			//spawn atoms for each molecule.
 			for (var c:int = 0; c < mole.atoms; c++) {
 				var atom:Atom = new Atom();
+				atom.color = mole.color;
 				atom.x = mole.x;
 				atom.y = mole.y;
 				atom.flicker(1);
@@ -125,6 +126,7 @@ package
 				b.kill();
 				//and make a new molecule.
 				var mole:Molecule = new Molecule(a.x, a.y, 2);
+				mole.color = (a as Atom).color;
 				molecules.add(mole);
 			}
 		}

@@ -46,19 +46,21 @@ package
 			
 		}
 		
-		public function setDirection(dir:Number) {
+		public function setDirection(dir:Number) : void
+		{
 			direction = dir;
 			this.velocity.x = (Math.cos(direction) * speed);
 			this.velocity.y = (Math.sin(direction) * speed);
 		}
 		
-		public function setDirectionWithVariance(dir:Number, vari:Number) {
+		public function setDirectionWithVariance(dir:Number, vari:Number) : void
+		{
 			direction = dir + (Math.random() * vari * 2 - vari);
 			this.velocity.x = (Math.cos(direction) * speed);
 			this.velocity.y = (Math.sin(direction) * speed);
 		}
 		
-		override public function update():void
+		override public function update() : void
 		{
 			this.angle += 5;
 			time++;
