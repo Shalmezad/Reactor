@@ -19,10 +19,7 @@ package
 			
 			//use speed/direction to determine velocity x/y.
 			speed = Math.random() * 80 + 20;
-			direction = Math.random() * Math.PI * 2;
-			
-			this.velocity.x = (Math.cos(direction) * speed);
-			this.velocity.y = (Math.sin(direction) * speed);
+			setDirection(Math.random() * Math.PI * 2);
 			
 			this.elasticity = 1;
 			loadGraphic(G_ATOM);
@@ -47,6 +44,18 @@ package
 					break;
 			}
 			
+		}
+		
+		public function setDirection(dir:Number) {
+			direction = dir;
+			this.velocity.x = (Math.cos(direction) * speed);
+			this.velocity.y = (Math.sin(direction) * speed);
+		}
+		
+		public function setDirectionWithVariance(dir:Number vari:Number) {
+			direction = dir + (Math.random() * vari * 2 - vari);
+			this.velocity.x = (Math.cos(direction) * speed);
+			this.velocity.y = (Math.sin(direction) * speed);
 		}
 		
 		override public function update():void
