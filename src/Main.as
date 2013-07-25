@@ -6,7 +6,7 @@ package
 	public class Main extends FlxGame 
 	{
 		public function Main() {
-			super(320, 240, TitleState, 2, 30, 30, true);
+			super(320, 240, GITDIntroState, 2, 30, 30, true);
 		}
 	}
 	
