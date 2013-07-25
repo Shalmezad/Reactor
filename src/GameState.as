@@ -79,6 +79,7 @@ package
 				atom.x = mole.x;
 				atom.y = mole.y;
 				atom.flicker(1);
+				atom.setDirectionWithVariance(Math.PI * 2 / mole.atoms * c, .8);
 				atoms.add(atom);
 			}
 		}

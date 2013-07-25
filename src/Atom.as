@@ -52,7 +52,7 @@ package
 			this.velocity.y = (Math.sin(direction) * speed);
 		}
 		
-		public function setDirectionWithVariance(dir:Number vari:Number) {
+		public function setDirectionWithVariance(dir:Number, vari:Number) {
 			direction = dir + (Math.random() * vari * 2 - vari);
 			this.velocity.x = (Math.cos(direction) * speed);
 			this.velocity.y = (Math.sin(direction) * speed);
