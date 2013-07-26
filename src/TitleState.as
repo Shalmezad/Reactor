@@ -15,12 +15,19 @@ package
 			
 			//add some guistuff.
 			guiStuff = new FlxGroup();
-			guiStuff.add(new FlxText(80, 30, 200, "Reactor"));
-			guiStuff.add(new FlxText(60, 50, 200, "By: Shalmezad"));
-			guiStuff.add(new FlxButton(80, 75, "Start", startGame));
+			var title:FlxText = new FlxText(200, 30, 200, "Reactor");
+			title.setFormat(null, 8, 0xffffff, "center");
+			title.x = 160 - title.width / 2;
+			guiStuff.add(title);
+			var author:FlxText = new FlxText(80, 50, 200, "By: Shalmezad");
+			author.setFormat(null, 8, 0xffffff, "center");
+			author.x = 160 - author.width / 2;
+			guiStuff.add(author);
+			var startBtn:FlxButton = new FlxButton(80, 75, "Start", startGame);
+			startBtn.x = 160 - startBtn.width / 2;
+			guiStuff.add(startBtn);
 			add(guiStuff);
-			//guiStuff.setAll("immovable", true);
-			guiStuff.setAll("elasticity", 1);
+			guiStuff.setAll("immovable", true);
 			
 			molecules = new FlxGroup();
 			for (var a:int = 0; a < 10; a++){
