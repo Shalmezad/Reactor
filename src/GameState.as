@@ -11,6 +11,10 @@ package
 		{
 			levelNumber = levelNum;
 			GUI.level = levelNum;
+		}
+		
+		override public function create():void
+		{
 			molecules = new FlxGroup();
 			atoms = new FlxGroup();
 			for (var a:int = 0; a < levelNumber + 4; a++){

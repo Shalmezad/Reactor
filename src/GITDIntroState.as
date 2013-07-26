@@ -12,6 +12,10 @@ package
  
 		public function GITDIntroState() 
 		{
+		}
+		
+		override public function create():void
+		{
 			gitd = new FlxSprite();
 			gitd.loadGraphic(GITD);
 			gitd.alpha = 0;
@@ -19,6 +23,7 @@ package
 			gitd.y = 30;
 			add(gitd);
 		}
+		
 		override public function update():void
 		{
 			tick++;

@@ -27,6 +27,7 @@ package
 			scoreText = new FlxText(175, 12, 200, "SCORE: 0");
 			add(scoreText);
 		}
+		
 		override public function update():void
 		{
 			energyText.text = "ENERGY: " + energy.toString();

@@ -16,10 +16,10 @@ package
 			//add some guistuff.
 			guiStuff = new FlxGroup();
 			var title:FlxText = new FlxText(200, 30, 200, "Reactor");
-			title.setFormat(null, 8, 0xffffff, "center");
+			title.setFormat(null, 20, 0xffffff, "center");
 			title.x = 160 - title.width / 2;
 			guiStuff.add(title);
-			var author:FlxText = new FlxText(80, 50, 200, "By: Shalmezad");
+			var author:FlxText = new FlxText(80, 60, 200, "By: Shalmezad");
 			author.setFormat(null, 8, 0xffffff, "center");
 			author.x = 160 - author.width / 2;
 			guiStuff.add(author);
