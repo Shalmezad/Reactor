@@ -15,6 +15,7 @@ package
 		private function init(e:Event):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			MochiBot.track(this, "b6d3436b");
 			addChild(new Game(this));
 		}
 	}
