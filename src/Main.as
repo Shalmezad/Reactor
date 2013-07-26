@@ -17,7 +17,6 @@ package
 		{
 			mochi.as3.MochiServices.connect("45eafdcfa21c112c",this);
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			MochiBot.track(this, "b6d3436b");
 			addChild(new Game(this));
 		}
 	}
