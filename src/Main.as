@@ -1,13 +1,21 @@
-package 
+package
 {
-	import org.flixel.*;
-	
-	
-	public class Main extends FlxGame 
+    import flash.display.Sprite;
+    import flash.events.Event;
+    [SWF(width = "640", height = "480", backgroundColor = "#000000")]
+	public class Main extends Sprite
 	{
-		public function Main() {
-			super(320, 240, LogoIntroState, 2, 30, 30, true);
+		//used by mochiads to verify authenticity
+		var _mochiads_game_id:String = "45eafdcfa21c112c";
+		
+		public function Main():void
+		{
+			addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		private function init(e:Event):void
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			addChild(new Game(this));
 		}
 	}
-	
 }
