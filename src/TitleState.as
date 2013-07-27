@@ -1,6 +1,7 @@
 package  
 {
 	import org.flixel.*;
+	import mochi.as3.*;
 	public class TitleState extends FlxState
 	{
 		private var guiStuff:FlxGroup;
@@ -50,6 +51,7 @@ package
 		
 		public function startGame() : void
 		{
+			MochiEvents.startPlay();
 			//reset the gui
 			GUI.energy = 3000;
 			GUI.level = 1;
