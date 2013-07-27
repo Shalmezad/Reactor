@@ -9,6 +9,7 @@ package
 			add(new FlxText(20, 20, 200, "GAME OVER"));
 			add(new FlxText(20, 30, 200, "Final score: " + GUI.score.toString()));
 			tick = 0;
+			Main.kongregate.stats.submit("highScore",GUI.score);
 		}
 		override public function update():void
 		{
